@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - SymfonyPress{% endblock %}
+
+{% block body %}
+<article style="margin: 30px 0;">
+    <header style="margin-bottom: 20px;">
+        <h1>{{ article.title }}</h1>
+        <p style="color: #666; margin-top: 10px;">
+            <time datetime="{{ article.createdAt|date('Y-m-d') }}">
+                Publié le {{ article.createdAt|date('d/m/Y') }}
+            </time>
+            {% if article.category %}
+                dans
+                <a href="{{ path('category_show', {slug: article.category.slug}) }}">
+                    {{ article.category.name }}
+                </a>
+            {% endif %}
+        </p>
+    </header>
+
+    <section style="line-height: 1.8; font-size: 1.1em;">
+        {{ article.content }}
+    </section>
+
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <a href="{{ path('home') }}">&larr; Retour à l'accueil</a>
+    </footer>
+</article>
+{% endblock %}

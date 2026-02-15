@@ -1,0 +1,28 @@
+<header style="background: #333; color: white; padding: 20px 0;">
+    <nav class="container" aria-label="Navigation principale">
+        <ul style="list-style: none; display: flex; gap: 20px; align-items: center; justify-content: space-between; margin: 0; padding: 0 20px;">
+            <li style="display: flex; gap: 20px; align-items: center;">
+                <a href="{{ path('home') }}" style="color: white; font-weight: bold; font-size: 1.2em;">SymfonyPress</a>
+                <a href="{{ path('home') }}" style="color: #ccc;">Accueil</a>
+                {% if app.user %}
+                    <a href="{{ path('admin_article_index') }}" style="color: #ccc;">Admin</a>
+                {% endif %}
+            </li>
+            <li style="display: flex; gap: 15px; align-items: center;">
+                {% if app.user %}
+                    <span style="color: #aaa;">{{ app.user.email }}</span>
+                    <a href="{{ path('app_logout') }}" style="background: #dc3545; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+                        Déconnexion
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" style="background: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+                        Connexion
+                    </a>
+                    <a href="{{ path('app_register') }}" style="background: #28a745; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+                        Inscription
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</header>

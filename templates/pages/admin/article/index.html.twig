@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Liste des articles{% endblock %}
+
+{% block body %}
+<section style="margin: 30px 0;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Gestion des articles</h1>
+        <a href="{{ path('admin_article_new') }}" style="background: #28a745; color: white; padding: 10px 20px; border-radius: 5px;">
+            + Nouvel article
+        </a>
+    </header>
+
+    {% for message in app.flashes('success') %}
+        <div role="alert" style="background: #d4edda; color: #155724; padding: 15px; margin: 20px 0; border-radius: 5px;">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+        <thead>
+            <tr style="background: #333; color: white;">
+                <th style="padding: 15px; text-align: left;">ID</th>
+                <th style="padding: 15px; text-align: left;">Titre</th>
+                <th style="padding: 15px; text-align: left;">Catégorie</th>
+                <th style="padding: 15px; text-align: left;">Date</th>
+                <th style="padding: 15px; text-align: left;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 15px;">{{ article.id }}</td>
+                    <td style="padding: 15px;">{{ article.title }}</td>
+                    <td style="padding: 15px;">{{ article.category ? article.category.name : '-' }}</td>
+                    <td style="padding: 15px;">{{ article.createdAt|date('d/m/Y') }}</td>
+                    <td style="padding: 15px;">
+                        <a href="{{ path('article_show', {slug: article.slug}) }}" style="color: #0066cc;">Voir</a>
+                        |
+                        <a href="{{ path('admin_article_edit', {id: article.id}) }}" style="color: #ffc107;">Modifier</a>
+                        |
+                        <form method="post" action="{{ path('admin_article_delete', {id: article.id}) }}" style="display: inline;" onsubmit="return confirm('Supprimer cet article ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                            <button type="submit" style="background: none; border: none; color: #dc3545; cursor: pointer;">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" style="padding: 15px; text-align: center;">Aucun article</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

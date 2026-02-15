@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block body %}
+<main>
+    <section style="text-align: center; padding: 50px 20px;">
+        <h1 style="font-size: 4em; color: #dc3545;">Oups !</h1>
+        <h2>Une erreur est survenue</h2>
+        <p style="color: #666; margin: 20px 0;">
+            Désolé, quelque chose s'est mal passé. Veuillez réessayer plus tard.
+        </p>
+        <a href="{{ path('home') }}" style="display: inline-block; background: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+            Retour à l'accueil
+        </a>
+    </section>
+</main>
+{% endblock %}

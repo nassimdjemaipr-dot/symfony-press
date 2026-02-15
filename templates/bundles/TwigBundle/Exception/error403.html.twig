@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès refusé{% endblock %}
+
+{% block body %}
+<main>
+    <section style="text-align: center; padding: 50px 20px;">
+        <h1 style="font-size: 4em; color: #ffc107;">403</h1>
+        <h2>Accès refusé</h2>
+        <p style="color: #666; margin: 20px 0;">
+            Vous n'avez pas les droits nécessaires pour accéder à cette page.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+            <a href="{{ path('home') }}" style="display: inline-block; background: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+                Retour à l'accueil
+            </a>
+            <a href="{{ path('app_login') }}" style="display: inline-block; background: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+                Se connecter
+            </a>
+        </div>
+    </section>
+</main>
+{% endblock %}

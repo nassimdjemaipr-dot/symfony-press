@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<main>
+    <section style="max-width: 400px; margin: 50px auto; padding: 20px;">
+        <header>
+            <h1>Inscription</h1>
+        </header>
+
+        {{ form_start(registrationForm, {'attr': {'style': 'display: flex; flex-direction: column; gap: 20px;'}}) }}
+            <div>
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px;'}}) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+
+            <div>
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px;'}}) }}
+                {{ form_errors(registrationForm.plainPassword.first) }}
+            </div>
+
+            <div>
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px;'}}) }}
+                {{ form_errors(registrationForm.plainPassword.second) }}
+            </div>
+
+            <button type="submit" style="background: #28a745; color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer;">
+                S'inscrire
+            </button>
+        {{ form_end(registrationForm) }}
+
+        <p style="margin-top: 20px; text-align: center;">
+            Déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a>
+        </p>
+    </section>
+</main>
+{% endblock %}
